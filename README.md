@@ -9,4 +9,4 @@ This is a Repository just for submitting my homeworks for the Camp
 
 ## *Contact*
 - :email:  ale95.grassi09@gmail.com
-- :rocket: (https://www.instagram.com/sandro_truce/)
+- :rocket: https://www.instagram.com/sandro_truce/
