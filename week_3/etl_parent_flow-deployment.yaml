@@ -1,0 +1,54 @@
+###
+### A complete description of a Prefect Deployment for flow 'etl-parent-flow'
+###
+name: week-3
+description: null
+version: d8632b627bb0ab1e41e843e49d639d7e
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {"months": [1,2,3,4,5,6,7,8,9,10,11,12], "year": 2019}
+schedule: null
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-parent-flow
+manifest_path: null
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  _block_document_id: e663ef60-a9a9-45ce-b6a1-7a4d1c55553c
+  _block_document_name: anonymous-51f1e282-0279-4a31-abb0-b051044c1387
+  _is_anonymous: true
+  block_type_slug: process
+  _block_type_slug: process
+storage: null
+path: /Users/ale/Desktop/zoomcamp/week_3
+entrypoint: parameterized_flow.py:etl_parent_flow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    months:
+      title: months
+      default:
+      - 1
+      - 2
+      position: 0
+      type: array
+      items:
+        type: integer
+    year:
+      title: year
+      default: 2021
+      position: 1
+      type: integer
+  required: null
+  definitions: null
