@@ -1,4 +1,4 @@
-#WEEK-3 HOMEWORK
+# WEEK-3 HOMEWORK
 
 ## Query 1
 ``` sql
