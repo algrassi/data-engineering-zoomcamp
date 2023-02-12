@@ -12,7 +12,15 @@ def fetch(dataset_url: str) -> pd.DataFrame:
 
 @task(log_prints=True)
 def clean(df = pd.DataFrame) -> pd.DataFrame:
-    """Fix dtype issues"""
+    """Replace the NaN values with 0"""
+    df["PUlocationID"].fillna(0, inplace=True)
+    df["DOlocationID"].fillna(0, inplace=True)
+    df["SR_Flag"].fillna(0, inplace=True)
+    return df
+
+@task(log_prints=True)
+def transform(df = pd.DataFrame) -> pd.DataFrame:
+    """Fix type issues"""
     df['pickup_datetime'] = pd.to_datetime(df['pickup_datetime'])
     df['dropOff_datetime'] = pd.to_datetime(df['dropOff_datetime'])
     print(df.head(2))
@@ -25,10 +33,10 @@ def write_local(df: pd.DataFrame, dataset_file: str) -> Path:
     """Write DataFrame out locally as a parquet file"""
     p = Path(f"data/fhv")
     p.mkdir(parents=True, exist_ok=True)
-    file_name = f"{dataset_file}.parquet"
+    file_name = f"{dataset_file}.gz"
     file_path = p / file_name
     with file_path.open("w", encoding="utf-8") as f:
-        df.to_parquet(file_path, compression="gzip")
+        df.to_csv(file_path, compression="gzip")
     return file_path
 
 @task()
@@ -49,7 +57,8 @@ def etl_web_to_gcs(year: int, month: int) -> None:
 
     df = fetch(dataset_url)
     df_clean = clean(df)
-    path = write_local(df_clean, dataset_file)
+    df_transf = transform(df_clean)
+    path = write_local(df_transf, dataset_file)
     write_gcs(path)
 
 @flow()
