@@ -1,0 +1,65 @@
+###
+### A complete description of a Prefect Deployment for flow 'parent-flow'
+###
+name: week-4-lesson
+description: null
+version: cd424989dd6448ca44a85d00373ddd31
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {
+  "months": [1,2,3,4,5,6,7,8,9,10,11,12],
+  "year": 2019,
+  "color": "",
+  "bucket": "week-4-lessons"
+}
+schedule: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: parent-flow
+manifest_path: null
+storage: null
+path: /Users/ale/Desktop/week_4
+entrypoint: web_to_gcs_dynamic.py:parent_flow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    color:
+      title: color
+      default: ''
+      position: 0
+      type: string
+    months:
+      title: months
+      default:
+      - 1
+      position: 1
+      type: array
+      items:
+        type: integer
+    year:
+      title: year
+      default: 2023
+      position: 2
+      type: integer
+    bucket:
+      title: bucket
+      default: ''
+      position: 3
+      type: string
+  required: null
+  definitions: null
